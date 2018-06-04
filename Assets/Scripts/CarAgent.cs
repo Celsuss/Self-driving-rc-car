@@ -40,8 +40,8 @@ public class CarAgent : Agent {
 		float force = Mathf.Clamp(vectorAction[0], -1, 1);
 		m_RigidBody.AddForce(transform.forward * force * m_Speed);
 
-		Vector3 torqueControlSignal = Vector3.zero;
-		torqueControlSignal.y = Mathf.Clamp(vectorAction[1], -1, 1);
-		m_RigidBody.AddTorque(torqueControlSignal * m_Torque);
+		float torque = 0;
+		torque = Mathf.Clamp(vectorAction[1], -1, 1);
+		m_RigidBody.AddTorque(Vector3.up * torque * m_Torque);
 	}
 }
