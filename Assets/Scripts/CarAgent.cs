@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CarAgent : Agent {
 	[SerializeField] GameObject m_StartObject;
-	[SerializeField] float m_Speed;
-	[SerializeField] float m_Torque;
+	CarController m_Controller;
 	Rigidbody m_RigidBody;
 
 	void Start () {
         m_RigidBody = GetComponent<Rigidbody>();
+		m_Controller = GetComponent<CarController>();
     }
 
 	public override void AgentReset(){
@@ -38,10 +38,13 @@ public class CarAgent : Agent {
 		// Actions, size = 2
 
 		float force = Mathf.Clamp(vectorAction[0], -1, 1);
-		m_RigidBody.AddForce(transform.forward * force * m_Speed);
+		m_Controller.Throttle(force);
+		//m_RigidBody.AddForce(transform.forward * force * m_Speed);
 
 		float torque = 0;
 		torque = Mathf.Clamp(vectorAction[1], -1, 1);
-		m_RigidBody.AddTorque(Vector3.up * torque * m_Torque);
+		m_Controller.Steer(torque);
+		//m_RigidBody.AddRelativeTorque(Vector3.up * torque * m_Torque);
+
 	}
 }
