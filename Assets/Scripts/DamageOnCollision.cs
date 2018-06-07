@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class DamageOnCollision : MonoBehaviour {
 
-	[SerializeField] int m_Damage = 1;
+	[SerializeField] bool m_KillCar = false;
+	[SerializeField] int m_Punishment = -1;
 
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
+	// Give the car a punishment if it's not set to kill the car
 	void OnCollisionStay(Collision collisionInfo) {
-		CarDamage car = collisionInfo.gameObject.GetComponentInParent<CarDamage>();
-		if(car)
-			car.AddDamage(m_Damage);
+		CarReward car = collisionInfo.gameObject.GetComponentInParent<CarReward>();
+		if(car){
+			if(!m_KillCar)
+				car.AddReward(m_Punishment);
+			else
+				car.Kill = true;
+		}
     }	
 }

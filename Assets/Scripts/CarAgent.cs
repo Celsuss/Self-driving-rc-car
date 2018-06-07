@@ -7,13 +7,11 @@ public class CarAgent : Agent {
 	CarController m_Controller;
 	Rigidbody m_RigidBody;
 	CarReward m_Reward;
-	CarDamage m_Damage;
 
 	void Start () {
         m_RigidBody = GetComponent<Rigidbody>();
 		m_Controller = GetComponent<CarController>();
 		m_Reward = GetComponent<CarReward>();
-		m_Damage = GetComponent<CarDamage>();
     }
 
 	public override void AgentReset(){
@@ -32,13 +30,14 @@ public class CarAgent : Agent {
 		// Time penalty
 		AddReward(-0.05f);
 
-		// Car damage penalty
-		float damage = m_Damage.GetDamageAndReset();
-		AddReward(-damage);
-
-		// Car rewards
+		// Get total reward for this update
 		float reward = m_Reward.GetRewardAndReset();
 		AddReward(reward);
+
+		if(m_Reward.Kill)
+		{
+			Done();
+		}
 
 		// Actions, size = 2
 

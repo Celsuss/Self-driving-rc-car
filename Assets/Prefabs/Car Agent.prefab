@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 54004475223665460}
   - component: {fileID: 114943226316570016}
   - component: {fileID: 114205860950603726}
+  - component: {fileID: 114741830625387332}
   m_Layer: 0
   m_Name: Car Agent
   m_TagString: Untagged
@@ -243,7 +244,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1273149135460582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.05, y: 1.1, z: -5.31}
+  m_LocalPosition: {x: 15.05, y: 2.98, z: -5.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4730117102173388}
@@ -655,13 +656,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275c31663a49ba243ab62a9198365915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxTorque: 400
-  m_MaxSteeringAngle: 30
+  m_MaxTorque: 1000
+  m_MaxSteeringAngle: 60
   m_MaxBreakTorque: 20
   m_WheelColliderFR: {fileID: 146811937190696876}
   m_WheelColliderFL: {fileID: 146626576546986760}
   m_WheelColliderBR: {fileID: 146034989142993508}
   m_WheelColliderBL: {fileID: 146593172620998526}
+--- !u!114 &114741830625387332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273149135460582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f0ee69ecc73914ead91e8c1197ba0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114943226316570016
 MonoBehaviour:
   m_ObjectHideFlags: 1
