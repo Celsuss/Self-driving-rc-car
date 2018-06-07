@@ -6,10 +6,14 @@ public class CarAgent : Agent {
 	[SerializeField] GameObject m_StartObject;
 	CarController m_Controller;
 	Rigidbody m_RigidBody;
+	CarReward m_Reward;
+	CarDamage m_Damage;
 
 	void Start () {
         m_RigidBody = GetComponent<Rigidbody>();
 		m_Controller = GetComponent<CarController>();
+		m_Reward = GetComponent<CarReward>();
+		m_Damage = GetComponent<CarDamage>();
     }
 
 	public override void AgentReset(){
@@ -25,26 +29,25 @@ public class CarAgent : Agent {
 	}
 
 	public override void AgentAction(float[] vectorAction, string textAction){
-		// Reached target
-		// if (distanceToTarget < 1.42f)
-		// {
-		// 	Done();
-		// 	AddReward(1.0f);
-		// }
-
 		// Time penalty
 		AddReward(-0.05f);
+
+		// Car damage penalty
+		float damage = m_Damage.GetDamageAndReset();
+		AddReward(-damage);
+
+		// Car rewards
+		float reward = m_Reward.GetRewardAndReset();
+		AddReward(reward);
 
 		// Actions, size = 2
 
 		float force = Mathf.Clamp(vectorAction[0], -1, 1);
 		m_Controller.Throttle(force);
-		//m_RigidBody.AddForce(transform.forward * force * m_Speed);
 
-		float torque = 0;
-		torque = Mathf.Clamp(vectorAction[1], -1, 1);
-		m_Controller.Steer(torque);
-		//m_RigidBody.AddRelativeTorque(Vector3.up * torque * m_Torque);
+		float steer = 0;
+		steer = Mathf.Clamp(vectorAction[1], -1, 1);
+		m_Controller.Steer(steer);
 
 	}
 }

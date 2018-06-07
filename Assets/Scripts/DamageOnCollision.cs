@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DamageOnCollision : MonoBehaviour {
 
+	[SerializeField] int m_Damage = 1;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -14,5 +16,9 @@ public class DamageOnCollision : MonoBehaviour {
 		
 	}
 
-	
+	void OnCollisionStay(Collision collisionInfo) {
+		CarDamage car = collisionInfo.gameObject.GetComponentInParent<CarDamage>();
+		if(car)
+			car.AddDamage(m_Damage);
+    }	
 }
