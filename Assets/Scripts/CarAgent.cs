@@ -48,5 +48,7 @@ public class CarAgent : Agent {
 		steer = Mathf.Clamp(vectorAction[1], -1, 1);
 		m_Controller.Steer(steer);
 
+		float breakForce = Mathf.Clamp(vectorAction[2], 0, 1);
+		m_Controller.Break(breakForce);
 	}
 }
