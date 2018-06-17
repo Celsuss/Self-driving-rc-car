@@ -10,6 +10,7 @@ public class RollerAgent : Agent {
 
     void Start () {
         rBody = GetComponent<Rigidbody>();
+		
     }
 
     public override void AgentReset()

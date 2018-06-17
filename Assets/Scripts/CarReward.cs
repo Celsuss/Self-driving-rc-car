@@ -18,6 +18,8 @@ public class CarReward : MonoBehaviour {
 	}
 
 	public float GetRewardAndReset(){
-		return m_Reward;
+		float reward = m_Reward;
+		m_Reward = 0;
+		return reward;
 	}
 }

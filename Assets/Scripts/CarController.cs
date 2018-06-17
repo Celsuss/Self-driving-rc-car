@@ -21,6 +21,18 @@ public class CarController : MonoBehaviour {
 		
 	}
 
+	public void Reset(){
+		m_WheelColliderFR.motorTorque = 0;
+		m_WheelColliderFL.motorTorque = 0;
+		m_WheelColliderBR.motorTorque = 0;
+		m_WheelColliderBL.motorTorque = 0;
+
+		m_WheelColliderFR.steerAngle = 0;
+		m_WheelColliderFL.steerAngle = 0;
+		m_WheelColliderBR.steerAngle = 0;
+		m_WheelColliderBL.steerAngle = 0;
+	}
+
 	public void Throttle(float torque){
 		m_WheelColliderBL.motorTorque = torque * m_MaxTorque;
 		m_WheelColliderBR.motorTorque = torque * m_MaxTorque;

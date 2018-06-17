@@ -21,5 +21,16 @@ public class DamageOnCollision : MonoBehaviour {
 			else
 				car.Kill = true;
 		}
-    }	
+    }
+
+	void OnTriggerEnter(Collider other) {
+        CarReward car = other.gameObject.GetComponentInParent<CarReward>();
+		if(car){
+			if(!m_KillCar)
+				car.AddReward(m_Punishment);
+			else
+				car.Kill = true;
+		}
+    }
+
 }
